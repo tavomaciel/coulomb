@@ -1,0 +1,27 @@
+ext {
+    SPRING_BOOT_VERSION = "1.4.2.RELEASE"
+    JACKSON_VERSION = "2.7.5"
+    LOGBACK_VERSION = "1.1.8"
+    SLF4J_VERSION = "1.7.+"
+    libs = [
+        TEST : [
+                "junit:junit:4.12",
+                "org.mockito:mockito-core:1.10.19",
+                "org.hamcrest:hamcrest-all:1.3",
+                "org.springframework.boot:spring-boot-starter-test:$SPRING_BOOT_VERSION",
+        ],
+        SPRING_BOOT : [
+                "org.springframework.boot:spring-boot-starter-web:$SPRING_BOOT_VERSION",
+                "org.springframework.boot:spring-boot-starter-undertow:$SPRING_BOOT_VERSION",
+                "org.springframework.boot:spring-boot-starter-actuator:$SPRING_BOOT_VERSION"
+        ],
+        JSON : [
+                "com.fasterxml.jackson.core:jackson-core:$JACKSON_VERSION",
+                "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:$JACKSON_VERSION"
+        ],
+        LOGS : [
+                "ch.qos.logback:logback-classic:$LOGBACK_VERSION",
+                "org.slf4j:slf4j-api:$SLF4J_VERSION"
+        ]
+    ]
+}
