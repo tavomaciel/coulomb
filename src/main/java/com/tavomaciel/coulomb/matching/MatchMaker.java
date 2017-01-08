@@ -69,7 +69,8 @@ public class MatchMaker extends Thread {
 
     private void fetch() throws InterruptedException {
         LOGGER.debug("Waiting for new match requests.");
-        Optional.ofNullable(requestQueue.poll(pollTimeout, MILLISECONDS)).ifPresent(requestsBeingProcessed::push);
+        Optional.ofNullable(requestQueue.poll(pollTimeout, MILLISECONDS))
+                .ifPresent(requestsBeingProcessed::push);
         requestQueue.drainTo(requestsBeingProcessed);
     }
 

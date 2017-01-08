@@ -2,16 +2,15 @@ package com.tavomaciel.coulomb.web;
 
 import com.tavomaciel.coulomb.matching.MatchMakerService;
 import com.tavomaciel.coulomb.matching.MatchResponse;
-import com.tavomaciel.coulomb.errorhandling.MissingArgumentException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Optional;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
@@ -42,12 +41,9 @@ public class MatchController {
 
     @RequestMapping("/")
     @ResponseBody
-    ResponseEntity<MatchResponse> match(Optional<String> name) throws Throwable {
+    ResponseEntity<MatchResponse> match(@RequestParam(name = "id") String identifier) throws Throwable {
         LOGGER.debug("Receiving match make request");
-        if(!name.isPresent()) {
-            throw new MissingArgumentException("name");
-        }
-        Future<MatchResponse> future = matchMakerService.find(name.get());
+        Future<MatchResponse> future = matchMakerService.find(identifier);
         MatchResponse response;
         try {
             LOGGER.debug("Getting future value");
